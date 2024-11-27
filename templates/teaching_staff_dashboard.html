@@ -1,0 +1,62 @@
+<!-- templates/teaching_staff_dashboard.html -->
+{% extends 'base.html' %} {% block title %}Teaching Staff Dashboard{% endblock
+%} {% block content %}
+<h2>Welcome, {{ username }}</h2>
+
+<h3>Assign a Task</h3>
+<form method="POST" action="{{ url_for('assign_task') }}">
+  <textarea name="task" rows="4" placeholder="Describe the task"></textarea
+  ><br /><br />
+  <input type="submit" value="Assign Task" />
+</form>
+
+<h3>Tasks Assigned by Me</h3>
+<ul>
+  {% for task in tasks %}
+  <li>{{ task['task'] }} - Assigned to {{ task['assigned_to'] }}</li>
+  {% else %}
+  <li>No tasks assigned yet.</li>
+  {% endfor %}
+</ul>
+
+<h3>Raise a Complaint</h3>
+<form method="POST" action="{{ url_for('raise_complaint') }}">
+  <textarea
+    name="complaint"
+    rows="4"
+    placeholder="Describe your complaint"
+  ></textarea
+  ><br /><br />
+  <input type="submit" value="Raise Complaint" />
+</form>
+
+<h3>Complaints</h3>
+<ul>
+  {% for complaint in complaints %}
+  <li>{{ complaint['complaint'] }} - Raised by {{ complaint['raised_by'] }}</li>
+  {% else %}
+  <li>No complaints yet.</li>
+  {% endfor %}
+</ul>
+
+<h3>Staff Broadcast</h3>
+<form method="POST" action="{{ url_for('broadcast') }}">
+  <textarea
+    name="broadcast"
+    rows="4"
+    placeholder="Write your broadcast message"
+  ></textarea
+  ><br /><br />
+  <input type="submit" value="Post Broadcast" />
+</form>
+
+<h3>Broadcasts</h3>
+<ul>
+  {% for broadcast in broadcasts %}
+  <li>{{ broadcast['message'] }} - Posted by {{ broadcast['posted_by'] }}</li>
+  {% else %}
+  <li>No broadcasts yet.</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

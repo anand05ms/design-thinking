@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>College Workflow Feeder</title>
+    <link rel="stylesheet" href="/static/css/main.css" />
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="{{ url_for('home') }}">Home</a>
+      {% if not session.get('username') %}
+      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('register') }}">Register</a>
+      {% else %}
+      <a href="{{ url_for('logout') }}">Logout</a>
+      <!-- Logout Button -->
+      {% endif %}
+    </div>
+
+    <div class="container">
+      {% if session.get('username') %}
+      <h2>Welcome, {{ session.get('username') }}</h2>
+
+      <!-- Redirect based on role -->
+      {% if session.get('role') == 'staff' %}
+      <a href="{{ url_for('dashboard') }}">Go to Staff Dashboard</a>
+      {% elif session.get('role') == 'senior' %}
+      <a href="{{ url_for('dashboard') }}">Go to Senior Dashboard</a>
+      {% elif session.get('role') == 'junior' %}
+      <a href="{{ url_for('dashboard') }}">Go to Junior Dashboard</a>
+      {% endif %} {% else %}
+      <h2>Welcome to College Workflow Feeder</h2>
+      <p>Please log in to access your dashboard.</p>
+      {% endif %}
+    </div>
+  </body>
+</html>

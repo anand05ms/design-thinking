@@ -1,0 +1,33 @@
+<!-- templates/non_teaching_staff_dashboard.html -->
+{% extends 'base.html' %} {% block title %}Non-Teaching Staff Dashboard{%
+endblock %} {% block content %}
+<h2>Welcome, {{ username }}</h2>
+
+<h3>Tasks Assigned to Me</h3>
+<ul>
+  {% for task in tasks %}
+  <li>{{ task['task'] }} - Assigned by {{ task['created_by'] }}</li>
+  {% else %}
+  <li>No tasks assigned yet.</li>
+  {% endfor %}
+</ul>
+
+<h3>Complaints</h3>
+<ul>
+  {% for complaint in complaints %}
+  <li>{{ complaint['complaint'] }} - Raised by {{ complaint['raised_by'] }}</li>
+  {% else %}
+  <li>No complaints yet.</li>
+  {% endfor %}
+</ul>
+
+<h3>Staff Broadcast</h3>
+<ul>
+  {% for broadcast in broadcasts %}
+  <li>{{ broadcast['message'] }} - Posted by {{ broadcast['posted_by'] }}</li>
+  {% else %}
+  <li>No broadcasts yet.</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
