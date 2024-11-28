@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block title %} Junior Dashboard {% endblock %} {%
+block content %}
+<h2>Welcome, {{ username }}</h2>
+
+<h3>Upcoming Events</h3>
+<ul>
+  {% for event in events %}
+  <li>{{ event['event'] }} - Posted by {{ event['posted_by'] }}</li>
+  {% endfor %}
+</ul>
+
+<h3>Assigned Tasks</h3>
+<ul>
+  {% for task in tasks %}
+  <li>{{ task['task'] }} - Assigned by {{ task['created_by'] }}</li>
+  {% else %}
+  <li>No tasks assigned to you yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block title %}Senior Dashboard{% endblock %} {%
+block content %}
+<h2>Welcome, {{ username }}</h2>
+
+<h3>Post an Upcoming Event</h3>
+<form method="POST" action="{{ url_for('post_event') }}">
+  <textarea name="event" rows="4" placeholder="Describe the event"></textarea
+  ><br /><br />
+  <input type="submit" value="Post Event" />
+</form>
+
+<h3>Upcoming Events</h3>
+<ul>
+  {% for event in events %}
+  <li>{{ event['event'] }} - Posted by {{ event['posted_by'] }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}
